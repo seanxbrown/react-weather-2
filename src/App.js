@@ -1,8 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import {useState} from "react";
-
-
+import moment from 'moment';
+moment().format();
 
 function App() {
 
@@ -32,6 +32,8 @@ function App() {
   https://openweathermap.org/api/one-call-api
 
   "temp", "feels_like", "sunrise", "sunset", "weatherObj"
+
+  HTTP in browser causing mixed active content issue. Investigate after app is built. "HTTPS everywhere" option in Firefox settings fixes problem when tested on GH-Pages.
   
   */
   
@@ -48,6 +50,7 @@ function App() {
      console.log(geoData)
 
      callWeatherAPI(geoData.lat, geoData.lon)
+     console.log(moment.unix(1646979848))
       
     }
     catch(err) {
