@@ -1,18 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import moment from 'moment';
 import ForecastComponent from "./ForecastComponent"
+import CurrentWeatherComponent from "./CurrentWeatherComponent"
 moment().format();
 
 function App() {
+
+  const [geoData, setGeoData] = useState(); //Geolocation data. Mainly used to get latitude and logitude but also contains other useful data;
+  const [weatherData, setWeatherData] = useState(); //Saves the response from the call weather API function. Can work with data in state instead of having to call the API for data queries.
+  const [currentWeather, setCurrentWeather] = useState();
+  const [weatherForecast, setWeatherForecast] = useState([]);
+
+  useEffect(() => {    
+
+
+    
+  })
 
   function handleSubmit(event) {
     //Submit handler function that takes the location data and uses it to call the api
   
     event.preventDefault();
     const location = document.querySelector("#cityInput").value;
-    callGeoAPI(location, callWeatherAPI);
+    callGeoAPI(location);
     //document.querySelector("#cityInput").value = "";
   }
   
@@ -26,13 +37,13 @@ function App() {
       console.log(response)
      let dataArray = await response.json();
      //console.log(dataArray)
-     let data = dataArray[0]
+     let data = await dataArray[0]
 
      setGeoData(data)
-     console.log("geodata", geoData)
+     //console.log("geodata", geoData)
 
-     callWeatherAPI(geoData.lat, geoData.lon, allocateWeatherData)
-     console.log(moment.unix(1646979848)["_d"])
+     callWeatherAPI(geoData.lat, geoData.lon)
+     //console.log(moment.unix(1646979848)["_d"])
       
     }
     catch(err) {
@@ -40,17 +51,17 @@ function App() {
     }
   }
 
-  async function callWeatherAPI(lat, lon, callback) {
+  async function callWeatherAPI(lat, lon) {
 
     try {
      let response =  await fetch(`http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=e7d76388b5f60a3e534c45325d4d2be9`);
 
      let data = await response.json();
-     console.log("weather api", data);
+     //console.log("weather api", data);
 
      setWeatherData(data);
 
-     console.log("weather state", weatherData);
+     //console.log("weather state", weatherData);
 
      allocateWeatherData();
     }
@@ -69,16 +80,11 @@ function App() {
     setWeatherForecast(weatherData.daily);
 
     console.log("current weather", currentWeather);
-    console.log("forecast", weatherForecast)
+    //console.log("forecast", weatherForecast)
 
 
   }
 
-  const [geoData, setGeoData] = useState(); //Geolocation data. Mainly used to get latitude and logitude but also contains other useful data;
-
-  const [weatherData, setWeatherData] = useState(); //Saves the response from the call weather API function. Can work with data in state instead of having to call the API for data queries.
-  const [currentWeather, setCurrentWeather] = useState();
-  const [weatherForecast, setWeatherForecast] = useState([]);
 
   return (
     <div className="App">
@@ -94,18 +100,8 @@ function App() {
       </div>
 
       <div id="weatherDiv">
-        <div id="currentWeatherDiv">
-          <h3>Current Weather</h3>
-          {currentWeather ? <img alt={currentWeather.weather[0].description} src={`https://openweathermap.org/img/wn/${currentWeather.weather[0].icon}@2x.png`} /> : ""}
-          {currentWeather ? <p>{currentWeather.temp} °C</p> : ""}
-
-          {geoData ? <p>{geoData.name}, {geoData.country}</p> : ""}
-          {currentWeather ? <p>{currentWeather.weather[0].main} </p> : ""}
-          {currentWeather ? <p>{currentWeather.weather[0].description} </p> : ""}
-          {currentWeather ? <p>Sunrise: {moment.unix(currentWeather.sunrise)["_d"].toTimeString()}</p> : ""}
-          {currentWeather ? <p>Sunset: {moment.unix(currentWeather.sunset)["_d"].toTimeString()}</p> : ""}
-            
-        </div>
+        <CurrentWeatherComponent currentWeatherData={currentWeather} geoData={geoData}/>
+        
         <ForecastComponent forecast= {weatherForecast} />
 
         

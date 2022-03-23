@@ -7,7 +7,7 @@ function ForecastComponent(forecast) {
     console.log("forecast from component", forecast.forecast)
     return (
         <div>
-            <h3>Forecast</h3>
+            <h3>Forecast from Component</h3>
             {forecastArray.map(forecast => {
                 return <div>
                             <p>{moment.unix(forecast.dt)["_d"].toString()}</p>
