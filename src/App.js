@@ -7,42 +7,40 @@ moment().format();
 
 function App() {
 
-  const [geoData, setGeoData] = useState(); //Geolocation data. Mainly used to get latitude and logitude but also contains other useful data;
+  /*const [geoData, setGeoData] = useState(); //Geolocation data. Mainly used to get latitude and logitude but also contains other useful data;
   const [weatherData, setWeatherData] = useState(); //Saves the response from the call weather API function. Can work with data in state instead of having to call the API for data queries.
   const [currentWeather, setCurrentWeather] = useState();
-  const [weatherForecast, setWeatherForecast] = useState([]);
+  const [weatherForecast, setWeatherForecast] = useState([]);*/
 
-  useEffect(() => {    
+  const [{weatherInformation, geoInformation}, setWeatherInformation] = useState({});
 
-
-    
-  })
-
-  function handleSubmit(event) {
+   async function handleSubmit(event) {
     //Submit handler function that takes the location data and uses it to call the api
   
     event.preventDefault();
     const location = document.querySelector("#cityInput").value;
-    callGeoAPI(location);
-    //document.querySelector("#cityInput").value = "";
+    const geoData = await callGeoAPI(location);
+    if (geoData === undefined){ console.log("No geodata")}
+    const weatherData = await callWeatherAPI(geoData.lat, geoData.lon);
+    setWeatherInformation({weatherInformation: weatherData, geoInformation: geoData})
+    document.querySelector("#cityInput").value = "";
   }
   
   
  
   //This function is used to get the latitude and longitude for the location entered by the user. The latitude and longitude are required to use the daily forecast API
-  async function callGeoAPI(location, callback) {
+  async function callGeoAPI(location) {
     
     try{
      const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=e7d76388b5f60a3e534c45325d4d2be9`, {mode: "cors"});
       console.log(response)
      let dataArray = await response.json();
-     //console.log(dataArray)
+     console.log(dataArray)
      let data = await dataArray[0]
 
-     setGeoData(data)
+     return data
      //console.log("geodata", geoData)
 
-     callWeatherAPI(geoData.lat, geoData.lon)
      //console.log(moment.unix(1646979848)["_d"])
       
     }
@@ -59,11 +57,10 @@ function App() {
      let data = await response.json();
      //console.log("weather api", data);
 
-     setWeatherData(data);
+     return data;
 
      //console.log("weather state", weatherData);
 
-     allocateWeatherData();
     }
 
     catch(err) {
@@ -75,7 +72,7 @@ function App() {
 
   //function to take the main weather data (saved in the weatherData state object) and assign it to either the currentweather state object, or the forecast state object.
 
-  function allocateWeatherData() {
+  /*function allocateWeatherData() {
     setCurrentWeather(weatherData.current);
     setWeatherForecast(weatherData.daily);
 
@@ -83,7 +80,7 @@ function App() {
     //console.log("forecast", weatherForecast)
 
 
-  }
+  }*/
 
 
   return (
@@ -100,10 +97,10 @@ function App() {
       </div>
 
       <div id="weatherDiv">
-        <CurrentWeatherComponent currentWeatherData={currentWeather} geoData={geoData}/>
-        
-        <ForecastComponent forecast= {weatherForecast} />
+        {weatherInformation && geoInformation ? <CurrentWeatherComponent currentWeatherData={weatherInformation} geoData={geoInformation}/> : null}
 
+        {weatherInformation && geoInformation ? <ForecastComponent forecastData={weatherInformation} geoData={geoInformation}/> : null}
+     
         
       </div>
       
