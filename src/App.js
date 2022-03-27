@@ -94,14 +94,14 @@ function App() {
 
   return (
     <div className="App">
-      <header>
+      <header className="heading">
         <h1>React Weather Application</h1>
-        <p>Search for a location and receive a weather forecast.</p>
+        <p>Search for a location, receive current weather and a forecast.</p>
       </header>
       <div id="formSection">
         <form action="#" method="GET" onSubmit={handleSubmit}>
           <input type="text" placeholder="Enter name of city" name="cityName" id="cityInput"></input>
-          <button type="submit">Submit</button>
+          <button type="submit" id="formSubmit">Submit</button>
         </form>
       </div>
 

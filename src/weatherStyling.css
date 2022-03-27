@@ -1,0 +1,52 @@
+.weatherHeader {
+    margin: 0.5rem 0;
+
+
+}
+
+.weatherForecast{
+    padding: 1rem 0;
+    margin: 0.5rem 0;
+    background-color: rgba(50, 50, 50, 0.5);
+}
+
+.date {
+
+font-size: 1.1rem;
+font-weight: bold;
+
+}
+
+.temp {
+    font-size: 1.1rem;
+    font-weight: bold;
+
+}
+
+/* Tablet styles */
+
+@media screen and (min-width: 481px ) {
+  
+    #weatherForecastContainer {
+        display: grid;
+        grid-template: 1fr 1fr / repeat(4, 1fr);
+        gap: 0.5rem 0.5rem
+    }
+  
+  }
+
+  
+/* Desktop styles */
+
+@media screen and (min-width: 1025px ) {
+  
+    #weatherForecastContainer {
+        display: flex;
+    }
+
+    #weatherForecastContainer .weatherForecast {
+        width: 500px;
+        border-radius: 10px;
+    }
+  
+  }
