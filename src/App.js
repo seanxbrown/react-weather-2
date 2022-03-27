@@ -23,7 +23,7 @@ function App() {
       const location = document.querySelector("#cityInput").value;
     const geoData = await callGeoAPI(location);
     if (geoData === undefined){ console.log("No geodata. 2.")}
-    const weatherData = await callWeatherAPI(geoData.lat, geoData.lon);
+    const weatherData = "" //await callWeatherAPI(geoData.lat, geoData.lon);
     setWeatherInformation({weatherInformation: weatherData, geoInformation: geoData})
     document.querySelector("#cityInput").value = "";
 
@@ -108,7 +108,7 @@ function App() {
       <div id="weatherDiv">
         {weatherInformation && geoInformation ? <CurrentWeatherComponent currentWeatherData={weatherInformation} geoData={geoInformation}/> : null}
 
-       
+        {weatherInformation && geoInformation ? <ForecastComponent forecastData={weatherInformation} geoData={geoInformation}/> : null}
      
         
       </div>
@@ -122,11 +122,7 @@ function App() {
 export default App;
 
 
- /*
- 
-  {weatherInformation && geoInformation ? <ForecastComponent forecastData={weatherInformation} geoData={geoInformation}/> : null}
-  
-  Next step is a redesign. Needs to 
+ /*Next step is a redesign. Needs to 
   Call the Geolocation API to convert a typed name into a latitude and longitude.
   
   Store the response in state (geolocation, setGeolocation?).
