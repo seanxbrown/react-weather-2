@@ -6,8 +6,8 @@ function ForecastComponent({forecastData, geoData}) {
     return (
         <div>
             <h3>Forecast from Component</h3>
-            {forecastData.daily.map(day => {
-                return <div>
+            {forecastData.daily.map((day, index)  => {
+                return <div key={index}>
                     <p>{moment.unix(day.dt)["_d"].toDateString()}</p>
                     <img src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`} />
                             <p>{day.weather[0].main}: {day.weather[0].description}</p>

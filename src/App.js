@@ -20,11 +20,19 @@ function App() {
     event.preventDefault();
     const location = document.querySelector("#cityInput").value;
     const geoData = await callGeoAPI(location);
-    if (geoData === undefined){ console.log("No geodata")}
-    const weatherData = await callWeatherAPI(geoData.lat, geoData.lon);
-    setWeatherInformation({weatherInformation: weatherData, geoInformation: geoData})
-    document.querySelector("#cityInput").value = "";
-  }
+    if (geoData === undefined) { 
+      console.log("No geodata");
+      return 
+     }
+
+    else {
+      const weatherData = await callWeatherAPI(geoData.lat, geoData.lon);
+      setWeatherInformation({weatherInformation: weatherData, geoInformation: geoData})
+      document.querySelector("#cityInput").value = "";
+    }
+  
+
+    }
   
   
  
