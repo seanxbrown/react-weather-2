@@ -4,7 +4,7 @@ moment().format()
 
 const CurrentWeatherComponent = ({currentWeatherData, currentWeatherData:{current}, geoData}) => {
 
-    console.log(moment.unix(currentWeatherData.current.dt)["_d"].toUTCString())
+    //console.log(moment.unix(currentWeatherData.current.dt)["_d"].toUTCString())
 
     return (
     <div id="currentWeatherDiv" >

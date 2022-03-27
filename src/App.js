@@ -7,11 +7,6 @@ moment().format();
 
 function App() {
 
-  /*const [geoData, setGeoData] = useState(); //Geolocation data. Mainly used to get latitude and logitude but also contains other useful data;
-  const [weatherData, setWeatherData] = useState(); //Saves the response from the call weather API function. Can work with data in state instead of having to call the API for data queries.
-  const [currentWeather, setCurrentWeather] = useState();
-  const [weatherForecast, setWeatherForecast] = useState([]);*/
-
   const [{weatherInformation, geoInformation}, setWeatherInformation] = useState({});
 
    async function handleSubmit(event) {
@@ -20,12 +15,26 @@ function App() {
     event.preventDefault();
     try {
 
-      const location = document.querySelector("#cityInput").value;
+    const location = document.querySelector("#cityInput").value;
     const geoData = await callGeoAPI(location);
-    if (geoData === undefined){ console.log("No geodata")}
-    const weatherData = await callWeatherAPI(geoData.lat, geoData.lon);
+    console.log("Handlesubmit geodata line 20", geoData)
+    if (geoData === undefined){ 
+
+      console.log("No geodata so no handlesubmit")
+
+      return
+    }
+
+    else {
+
+      const weatherData = await callWeatherAPI(geoData.lat, geoData.lon);
     setWeatherInformation({weatherInformation: weatherData, geoInformation: geoData})
     document.querySelector("#cityInput").value = "";
+    console.log("hand submit finished")
+
+    }
+
+    
 
     }
 
@@ -42,10 +51,11 @@ function App() {
     
     try{
      const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=e7d76388b5f60a3e534c45325d4d2be9`, {mode: "cors"});
-      console.log(response)
+      console.log("CallgeoAPI response", response, response.status)
      let dataArray = await response.json();
-     console.log(dataArray)
+    console.log("CallgeoAPI array", dataArray)
      let data = await dataArray[0]
+     console.log("callgeoapi data individ", data)
 
      return data
      //console.log("geodata", geoData)
@@ -64,11 +74,8 @@ function App() {
      let response =  await fetch(`http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=e7d76388b5f60a3e534c45325d4d2be9`);
 
      let data = await response.json();
-     //console.log("weather api", data);
 
      return data;
-
-     //console.log("weather state", weatherData);
 
     }
 
