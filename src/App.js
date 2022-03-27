@@ -18,21 +18,22 @@ function App() {
     //Submit handler function that takes the location data and uses it to call the api
   
     event.preventDefault();
-    const location = document.querySelector("#cityInput").value;
+    try {
+
+      const location = document.querySelector("#cityInput").value;
     const geoData = await callGeoAPI(location);
-    if (geoData === undefined) { 
-      console.log("No geodata");
-      return 
-     }
-
-    else {
-      const weatherData = await callWeatherAPI(geoData.lat, geoData.lon);
-      setWeatherInformation({weatherInformation: weatherData, geoInformation: geoData})
-      document.querySelector("#cityInput").value = "";
-    }
-  
+    if (geoData === undefined){ console.log("No geodata. 2.")}
+    const weatherData = await callWeatherAPI(geoData.lat, geoData.lon);
+    setWeatherInformation({weatherInformation: weatherData, geoInformation: geoData})
+    document.querySelector("#cityInput").value = "";
 
     }
+
+    catch(err) {
+      alert(err);
+    }
+    
+  }
   
   
  
