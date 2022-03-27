@@ -23,15 +23,19 @@ function App() {
     try {
     
     const geoData = await callGeoAPI(location);
-    if (geoData !== undefined){ 
-      const weatherData = await callWeatherAPI(geoData.lat, geoData.lon);
-    setWeatherInformation({weatherInformation: weatherData, geoInformation: geoData})
-    document.querySelector("#cityInput").value = "";
+    if (!geoData.lat || !geoData.lon){
+
+      return 
+      
 
       
     }
 
-    else {return}
+    else {
+      const weatherData = await callWeatherAPI(geoData.lat, geoData.lon);
+    setWeatherInformation({weatherInformation: weatherData, geoInformation: geoData})
+    document.querySelector("#cityInput").value = "";
+    }
     
     }
 
