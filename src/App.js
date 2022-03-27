@@ -18,25 +18,15 @@ function App() {
     //Submit handler function that takes the location data and uses it to call the api
   
     event.preventDefault();
-    const location = document.querySelector("#cityInput").value;
-
     try {
-    
+
+      const location = document.querySelector("#cityInput").value;
     const geoData = await callGeoAPI(location);
-    if (!geoData.lat || !geoData.lon){
-
-      return 
-      
-
-      
-    }
-
-    else {
-      const weatherData = await callWeatherAPI(geoData.lat, geoData.lon);
+    if (geoData === undefined){ console.log("No geodata")}
+    const weatherData = await callWeatherAPI(geoData.lat, geoData.lon);
     setWeatherInformation({weatherInformation: weatherData, geoInformation: geoData})
     document.querySelector("#cityInput").value = "";
-    }
-    
+
     }
 
     catch(err) {
@@ -52,9 +42,9 @@ function App() {
     
     try{
      const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=e7d76388b5f60a3e534c45325d4d2be9`, {mode: "cors"});
-      //console.log(response)
+      console.log(response)
      let dataArray = await response.json();
-     //console.log(dataArray)
+     console.log(dataArray)
      let data = await dataArray[0]
 
      return data
