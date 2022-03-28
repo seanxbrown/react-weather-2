@@ -50,7 +50,7 @@ function App() {
   async function callGeoAPI(location) {
     
     try{
-     const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=e7d76388b5f60a3e534c45325d4d2be9`, {mode: "cors"});
+     const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=e7d76388b5f60a3e534c45325d4d2be9`, {mode: "cors"});
       console.log("CallgeoAPI response", response, response.status)
      let dataArray = await response.json();
 
@@ -84,7 +84,7 @@ function App() {
   async function callWeatherAPI(lat, lon) {
 
     try {
-     let response =  await fetch(`http://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=e7d76388b5f60a3e534c45325d4d2be9`);
+     let response =  await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=e7d76388b5f60a3e534c45325d4d2be9`);
 
      let data = await response.json();
 
