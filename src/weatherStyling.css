@@ -69,7 +69,8 @@ font-weight: bold;
 
     #currentWeatherDetailDiv{
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
+        width: 95%;
     }
   
   }
