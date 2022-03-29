@@ -5,14 +5,14 @@
 }
 
 :root {
-  --button: #330033;
-  ---button-hover: #660066;
+  --button: #000099;
+  ---button-hover: #0000dd;
 }
 
 body {
   font-family: 'Raleway', sans-serif;
   background-color: #222222;
-  color: #ddd;
+  color: #ccc;
   line-height: 1.5rem;
   
 }
@@ -28,6 +28,7 @@ header {
   padding: 1rem 0;
   background-color: #000;
   opacity: 40%;
+  color: #ccc;
 
 }
 
@@ -50,5 +51,21 @@ header {
 #formSubmit:hover {
   cursor: pointer;
   background-color: var(---button-hover)
+
+}
+
+.hidden {
+  display: none;
+}
+
+
+/* Desktop styles */
+
+@media screen and (min-width: 1025px ) {
+  
+  .hidden {
+      display:inherit;
+  }
+
 
 }

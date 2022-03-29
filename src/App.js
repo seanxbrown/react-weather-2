@@ -87,6 +87,7 @@ function App() {
      let response =  await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=e7d76388b5f60a3e534c45325d4d2be9`);
 
      let data = await response.json();
+     console.log(data)
 
      return data;
 
