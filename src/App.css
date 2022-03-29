@@ -13,8 +13,7 @@ body {
   font-family: 'Raleway', sans-serif;
   background-color: #222222;
   color: #ccc;
-  line-height: 1.5rem;
-  
+  line-height: 1.5rem;  
 }
 
 .App {
@@ -29,7 +28,6 @@ header {
   background-color: #000;
   opacity: 40%;
   color: #ccc;
-
 }
 
 #cityInput{
@@ -50,8 +48,7 @@ header {
 
 #formSubmit:hover {
   cursor: pointer;
-  background-color: var(---button-hover)
-
+  background-color: var(---button-hover);
 }
 
 .hidden {
@@ -61,11 +58,8 @@ header {
 
 /* Desktop styles */
 
-@media screen and (min-width: 1025px ) {
-  
+@media screen and (min-width: 1025px ) {  
   .hidden {
       display:inherit;
   }
-
-
 }
