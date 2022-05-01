@@ -1,8 +1,13 @@
-import './App.css';
+//import './App.css';
 import {useState, useEffect} from "react";
 import moment from 'moment';
 import ForecastComponent from "./ForecastComponent"
-import CurrentWeatherComponent from "./CurrentWeatherComponent"
+import CurrentWeatherComponent from "./CurrentWeatherComponent";
+import Row from "react-bootstrap/Row";
+import Form from "react-bootstrap/Form";
+import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button"
+
 moment().format();
 
 function App() {
@@ -86,24 +91,25 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <header className="heading">
+    <Container className="bg-gradient bg-info" fluid>
+      <Row className="text-center">
         <h1>React Weather Application</h1>
-        <p>Search for a location, receive current weather and a forecast.</p>
-      </header>
-      <div id="formSection">
-        <form action="#" method="GET" onSubmit={handleSubmit}>
-          <input type="text" placeholder="Enter name of city" name="cityName" id="cityInput"></input>
-          <button type="submit" id="formSubmit">Submit</button>
-        </form>
-      </div>
+        <p className="text-muted">Search for a location, receive current weather and a forecast.</p>
+      </Row>
+      <Form className="border-primary w-75 mx-auto pb-2" onSubmit={handleSubmit}>
+        <Form.Group action="#" method="GET" className="mb-4">
+          <Form.Control type="text" placeholder="Enter name of city" name="cityName" id="cityInput"></Form.Control>
+        </Form.Group>
+        <Button type="submit" className="btn btn-large bg-success border-success">Submit</Button>
 
-      <div id="weatherDiv">
+      </Form>
+
+      <Container id="weatherDiv">
         {weatherInformation && geoInformation ? <CurrentWeatherComponent currentWeatherData={weatherInformation} geoData={geoInformation}/> : null}
 
         {weatherInformation && geoInformation ? <ForecastComponent forecastData={weatherInformation} geoData={geoInformation}/> : null}
-      </div>
-    </div>
+      </Container>
+    </Container>
   );
 }
 
