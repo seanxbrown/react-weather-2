@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# React Weather App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
+ * [How it works](#how-it-works)
+ * [Overview of functions](#overview-of-functions)
+  * [History](#history)
+ * [Future enhancements](#future-enhancements)
 
-## Available Scripts
+ ## How it works
 
-In the project directory, you can run:
+ The user input from the search bar is used as part of an API call the the OpenWeather API. The response is used to call two APIs and the result is stored in state. The weather data is passed into two different components to be rendered as appropriate.
 
-### `npm start`
+ Technologies used include:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+ * React Bootstrap
+ * React Hooks (State and Effect)
+ 
+  ## Overview of functions
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+  ### handleSubmit
 
-### `npm test`
+  Certain weather data can only be retrieved if the API call is made with the latitude and longitude of the target city / location.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  Instead of expecting the user to know or search for this information, the app allows you to enter a city, which retrieves the geographical data ("geodata") which includes information on latitude and longitude. 
 
-### `npm run build`
+  This function:
+  * Calls the geodata API
+  * Uses the geodata latitude and longitude to call the weather API
+  * Store the weather data in state
+  * Clear the input field (signal that submission has worked) 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### callGeoAPI
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Takes a location (e.g. London) and returns data on that location, including latitude and longitude. As mentioned, the latitude and longitude are required to use the daily forecast API.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+ ### callWeatherAPI
 
-### `npm run eject`
+ Takes the latitude and longitude of the location input by the user and returns detailed weather data for that location.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ## Future enhancements
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* Ability to save locations (to local storage) as favourites
+* Separate pages for days or forecast types using React Router
+* New design methodology
+* Dark/light mode implementation using the Context API
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
