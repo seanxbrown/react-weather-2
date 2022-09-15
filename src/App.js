@@ -6,7 +6,9 @@ import CurrentWeatherComponent from "./CurrentWeatherComponent";
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button"
+import Button from "react-bootstrap/Button";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar"
 
 moment().format();
 
@@ -91,14 +93,21 @@ function App() {
   }
 
   return (
-    <Container className="bg-gradient bg-info" fluid>
-      <Row className="text-center">
-        <h1>React Weather Application</h1>
-        <p className="text-muted">Search for a location, receive current weather and a forecast.</p>
-      </Row>
+    <Container fluid className="p-0">
+      <Navbar className="mb-5 p-4 bg-gradient bg-info">
+        <Container>
+          <Navbar.Brand>React Weather</Navbar.Brand>
+          <Navbar.Toggle aria-controls="navbar-nav"/>
+          <Navbar.Collapse id="navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link>Favourite Cities</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
       <Form className="border-primary w-75 mx-auto pb-2" onSubmit={handleSubmit}>
         <Form.Group action="#" method="GET" className="mb-4">
-          <Form.Control type="text" placeholder="Enter name of city" name="cityName" id="cityInput"></Form.Control>
+          <Form.Control className="p-4" type="text" placeholder="Enter name of city" name="cityName" id="cityInput"></Form.Control>
         </Form.Group>
         <Button type="submit" className="btn btn-large bg-success border-success">Submit</Button>
 
