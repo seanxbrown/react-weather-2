@@ -12,7 +12,7 @@ const CurrentWeatherComponent = ({currentWeatherData, currentWeatherData:{curren
 
     return (
     <Container id="currentWeatherDiv" className="border border-5 border-info rounded bg-gradient bg-info opacity-75">
-        <Row className="weatherForecast p-4" lg={2}>
+        <Row className="weatherForecast p-4" md={2}>
           <Col>
           <h2 id="location" className="text-center text-light h3 p-2 w-50 mx-auto fw-bold">{geoData.name}, {geoData.country}</h2>
             <div className="d-flex flex-column ">
