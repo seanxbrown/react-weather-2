@@ -73,7 +73,7 @@ function App() {
       <NavbarComponent />      
       <Form className="border-primary w-75 mx-auto pb-2" onSubmit={handleSubmit}>
         <Form.Group action="#" method="GET" className="mb-4">
-          <Form.Control className="p-4" type="text" placeholder="Enter name of city" name="cityName" id="cityInput"></Form.Control>
+          <Form.Control className="p-3" type="text" placeholder="Enter name of city" name="cityName" id="cityInput"></Form.Control>
         </Form.Group>
         <Button type="submit" className="btn btn-large bg-success border-success">Submit</Button>
       </Form>
