@@ -8,12 +8,16 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import NavbarComponent from "./NavbarComponent"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Search from "./Search"
+import WeatherComponent from "./WeatherComponent"
 
 moment().format();
 
 function App() {
 
   const [{weatherInformation, geoInformation}, setWeatherInformation] = useState({});
+  const [savedCities, setSavedCities] = useState([])
 
    async function handleSubmit(event) {
     //Submit handler function that takes the location data and uses it to call the api  
@@ -68,20 +72,28 @@ function App() {
     }
   }
 
+  /*function addToFavouriteCities() {
+    const newCity = {
+      id: 1,
+      name: geoInformation.name,
+      lat: geoInformation.lat,
+      lon: geoInformation.lon,
+      country: geoInformation.country
+    }
+
+    setSavedCities([...savedCities].concat(newCity))
+
+  }*/
+
   return (
-    <Container fluid className="p-0">
-      <NavbarComponent />      
-      <Form className="border-primary w-75 mx-auto pb-2" onSubmit={handleSubmit}>
-        <Form.Group action="#" method="GET" className="mb-4">
-          <Form.Control className="p-3" type="text" placeholder="Enter name of city" name="cityName" id="cityInput"></Form.Control>
-        </Form.Group>
-        <Button type="submit" className="btn btn-large bg-success border-success">Submit</Button>
-      </Form>
-      <Container id="weatherDiv">
-        {weatherInformation && geoInformation ? <CurrentWeatherComponent currentWeatherData={weatherInformation} geoData={geoInformation}/> : null}
-        {weatherInformation && geoInformation ? <ForecastComponent forecastData={weatherInformation} geoData={geoInformation}/> : null}
+    <BrowserRouter>
+      <Container fluid className="p-0">
+        <NavbarComponent />      
+        <Search handleSubmit={handleSubmit}/>
+        <WeatherComponent weatherInformation={weatherInformation} geoInformation={geoInformation} />
       </Container>
-    </Container>
+    </BrowserRouter>
+    
   );
 }
 
