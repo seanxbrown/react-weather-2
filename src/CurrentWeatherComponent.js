@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup"
+import Button from "react-bootstrap/Button";
 
 moment().format();
 
@@ -19,6 +20,8 @@ const CurrentWeatherComponent = ({currentWeatherData, currentWeatherData:{curren
             <img alt={current.weather[0].description} className="mx-auto" src={`https://openweathermap.org/img/wn/${current.weather[0].icon}@2x.png`} style={{height: "128px", width:"128px"}} />
             <h3 className="temp text-center text-light">{Math.round(current.temp)} °C</h3>
             <p className="weatherDescription text-center text-light">{current.weather[0].main}: {current.weather[0].description}</p>
+            <Button data-testid="favouritesButton" type="button">Add to Favourites</Button>
+
             </div>
           </Col>
           <Col>
