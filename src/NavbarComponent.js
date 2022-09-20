@@ -1,16 +1,17 @@
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
+import {Link} from "react-router-dom";
 
 function NavbarComponent() {
     return (
         <Navbar className="mb-5 p-4 bg-gradient bg-info">
         <Container>
-          <Navbar.Brand>React Weather</Navbar.Brand>
+          <Link to="/react-weather-2" className="navbar-brand">React Weather</Link>
           <Navbar.Toggle aria-controls="navbar-nav"/>
           <Navbar.Collapse id="navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link>Favourite Cities</Nav.Link>
+              <Link to="/react-weather-2/savedcities" className="nav-link">Favourite Cities</Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

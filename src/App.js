@@ -11,6 +11,7 @@ import NavbarComponent from "./NavbarComponent"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Search from "./Search"
 import WeatherComponent from "./WeatherComponent"
+import SavedCitiesComponent from "./SavedCitiesComponent"
 
 moment().format();
 
@@ -89,8 +90,10 @@ function App() {
     <BrowserRouter>
       <Container fluid className="p-0">
         <NavbarComponent />      
-        <Search handleSubmit={handleSubmit}/>
-        <WeatherComponent weatherInformation={weatherInformation} geoInformation={geoInformation} />
+        <Routes>
+        <Route path="/react-weather-2/" element={<Search handleSubmit={handleSubmit} weatherInformation={weatherInformation} geoInformation={geoInformation}/>}/>
+          <Route path="/react-weather-2/savedcities" element={<SavedCitiesComponent />} />
+        </Routes> 
       </Container>
     </BrowserRouter>
     
