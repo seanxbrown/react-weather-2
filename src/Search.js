@@ -2,7 +2,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import WeatherComponent from "./WeatherComponent";
 
-function Search({ handleSubmit, weatherInformation, geoInformation }) {
+function Search({ handleSubmit, weatherInformation, geoInformation, addToFavouriteCities }) {
     return (
         <>
         <Form className="border-primary w-75 mx-auto pb-2" onSubmit={handleSubmit}>
@@ -11,7 +11,7 @@ function Search({ handleSubmit, weatherInformation, geoInformation }) {
           </Form.Group>
           <Button type="submit" className="btn btn-large bg-success border-success">Submit</Button>
         </Form>
-        <WeatherComponent weatherInformation={weatherInformation} geoInformation={geoInformation}/>       
+        <WeatherComponent weatherInformation={weatherInformation} geoInformation={geoInformation} addToFavouriteCities={addToFavouriteCities}/>       
         </>
 
     )

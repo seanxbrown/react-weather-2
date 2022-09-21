@@ -11,7 +11,8 @@ import NavbarComponent from "./NavbarComponent"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Search from "./Search"
 import WeatherComponent from "./WeatherComponent"
-import SavedCitiesComponent from "./SavedCitiesComponent"
+import SavedCitiesComponent from "./SavedCitiesComponent";
+import { v4 as uuidv4 } from "uuid"
 
 moment().format();
 
@@ -73,9 +74,11 @@ function App() {
     }
   }
 
-  /*function addToFavouriteCities() {
+  function addToFavouriteCities() {
+
+    const newId = uuidv4()
     const newCity = {
-      id: 1,
+      id: newId,
       name: geoInformation.name,
       lat: geoInformation.lat,
       lon: geoInformation.lon,
@@ -84,15 +87,15 @@ function App() {
 
     setSavedCities([...savedCities].concat(newCity))
 
-  }*/
+  }
 
   return (
     <BrowserRouter>
       <Container fluid className="p-0">
         <NavbarComponent />      
         <Routes>
-        <Route path="/react-weather-2/" element={<Search handleSubmit={handleSubmit} weatherInformation={weatherInformation} geoInformation={geoInformation}/>}/>
-          <Route path="/react-weather-2/savedcities" element={<SavedCitiesComponent />} />
+        <Route path="/react-weather-2/" element={<Search addToFavouriteCities={addToFavouriteCities} handleSubmit={handleSubmit} weatherInformation={weatherInformation} geoInformation={geoInformation}/>}/>
+          <Route path="/react-weather-2/savedcities" element={<SavedCitiesComponent callWeatherAPI={callWeatherAPI} savedCities={savedCities} />} />
         </Routes> 
       </Container>
     </BrowserRouter>
