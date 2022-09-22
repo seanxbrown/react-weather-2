@@ -31,7 +31,11 @@ function SavedCitiesComponent({ savedCities, callWeatherAPI }) {
     return (
         <Container>
             {savedCities.map(city => {
-                return <div id={city.id}>{city.name}, {city.country}, {city.temp}, {city.weather_description}</div>
+                return <div id={city.id}>
+                    {city.name}, {city.country}, {Math.round(city.temp)}, {city.weather_description}
+                    <img className="mx-auto" src={`https://openweathermap.org/img/wn/${city.weather_icon}@2x.png`} style={{height: "128px", width:"128px"}} />
+
+                    </div>
             })}
         </Container>
     )
