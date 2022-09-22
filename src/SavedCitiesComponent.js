@@ -8,7 +8,7 @@ import CloseButton from "react-bootstrap/CloseButton";
 
 moment().format()
 
-function SavedCitiesComponent({ savedCities, callWeatherAPI }) {
+function SavedCitiesComponent({ savedCities, callWeatherAPI, removeFromFavouriteCities }) {
 
     const [savedCityWeather, setSavedCityWeather] = useState([]);
 
@@ -38,7 +38,7 @@ function SavedCitiesComponent({ savedCities, callWeatherAPI }) {
             <Row xs={1} id="citiesContainerRow">
                 {savedCities.map(city => {
                     return <Col id={city.id} className="border border-1 border-info mb-5">
-                                <CloseButton />
+                                <CloseButton onClick={removeFromFavouriteCities}/>
                                 <Container className="d-flex justify-content-between align-items-center">
                                     <h3>{Math.round(city.temp)}°C</h3>
                                     <h2 className="text-center text-dark h3 p-2 w-50 mx-auto fw-bold">{city.name}, {city.country}</h2>

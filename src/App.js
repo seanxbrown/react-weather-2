@@ -89,13 +89,21 @@ function App() {
 
   }
 
+  function removeFromFavouriteCities(e) {
+    const selectedId = e.target.parentElement.id
+    const newArray = [...savedCities].filter(city => city.id !== selectedId)
+    setSavedCities(newArray)
+
+
+  }
+
   return (
     <BrowserRouter>
       <Container fluid className="p-0">
         <NavbarComponent />      
         <Routes>
         <Route path="/react-weather-2/" element={<Search addToFavouriteCities={addToFavouriteCities} handleSubmit={handleSubmit} weatherInformation={weatherInformation} geoInformation={geoInformation}/>}/>
-          <Route path="/react-weather-2/savedcities" element={<SavedCitiesComponent callWeatherAPI={callWeatherAPI} savedCities={savedCities} />} />
+          <Route path="/react-weather-2/savedcities" element={<SavedCitiesComponent removeFromFavouriteCities={removeFromFavouriteCities} callWeatherAPI={callWeatherAPI} savedCities={savedCities} />} />
         </Routes> 
       </Container>
     </BrowserRouter>
