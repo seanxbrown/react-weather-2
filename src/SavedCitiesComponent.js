@@ -1,4 +1,6 @@
 import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col"
 import moment from "moment";
 import { useState, useEffect } from "react";
 
@@ -30,13 +32,22 @@ function SavedCitiesComponent({ savedCities, callWeatherAPI }) {
 
     return (
         <Container>
+        <Row xs={1} >
             {savedCities.map(city => {
-                return <div id={city.id}>
-                    {city.name}, {city.country}, {Math.round(city.temp)}, {city.weather_description}
-                    <img className="mx-auto" src={`https://openweathermap.org/img/wn/${city.weather_icon}@2x.png`} style={{height: "128px", width:"128px"}} />
+                return <Col id={city.id} className="border border-1 border-info mb-5">
+                        <Container className="d-flex justify-content-between align-items-center">
+                            <h3>{Math.round(city.temp)}°C</h3>
+                            <h2 className="text-center text-dark h3 p-2 w-50 mx-auto fw-bold">{city.name}, {city.country}</h2>
+                            <img src={`https://openweathermap.org/img/wn/${city.weather_icon}@2x.png`} style={{height: "128px", width:"128px"}} />
+                            <p>{city.weather_description}</p>
 
-                    </div>
+                        </Container>
+                    
+                            
+
+                    </Col>
             })}
+        </Row>
         </Container>
     )
 }
