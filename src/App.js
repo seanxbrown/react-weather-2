@@ -76,7 +76,7 @@ function App() {
 
   function addToFavouriteCities() {
 
-    const newId = uuidv4()
+    const newId = "" + geoInformation.lat + geoInformation.lon
     const newCity = {
       id: newId,
       name: geoInformation.name,
