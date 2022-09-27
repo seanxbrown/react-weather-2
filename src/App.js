@@ -77,6 +77,16 @@ function App() {
   function addToFavouriteCities() {
 
     const newId = "" + geoInformation.lat + geoInformation.lon
+
+    for (let city of savedCities) {
+
+      if (newId === city.id) {
+        return
+      }
+
+      
+    }
+
     const newCity = {
       id: newId,
       name: geoInformation.name,
