@@ -35,19 +35,20 @@ function SavedCitiesComponent({ savedCities, callWeatherAPI, removeFromFavourite
 
     return (
         <Container>
+            {savedCities.length === 0 ? <section> No cities saved!</section> :
             <Row xs={1} id="citiesContainerRow">
                 {savedCities.map(city => {
-                    return <Col id={city.id} className="border border-1 border-info mb-5">
+                    return <Col id={city.id} className="border border-1 border-info mb-5 rounded-3 p-3 text-light bg-gradient bg-info">
                                 <CloseButton onClick={removeFromFavouriteCities}/>
                                 <Container className="d-flex justify-content-between align-items-center">
                                     <h3>{Math.round(city.temp)}°C</h3>
-                                    <h2 className="text-center text-dark h3 p-2 w-50 mx-auto fw-bold">{city.name}, {city.country}</h2>
+                                    <h2 className="text-center h3 p-2 w-50 mx-auto fw-bold">{city.name}, {city.country}</h2>
                                     <img src={`https://openweathermap.org/img/wn/${city.weather_icon}@2x.png`} style={{height: "128px", width:"128px"}} />
                                     <p>{city.weather_description}</p>
                                 </Container>
                             </Col>
                 })}
-            </Row>
+            </Row>}
         </Container>
     )
 }

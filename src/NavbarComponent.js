@@ -10,7 +10,7 @@ function NavbarComponent() {
           <Link to="/react-weather-2" className="navbar-brand">React Weather</Link>
           <Navbar.Toggle aria-controls="navbar-nav"/>
           <Navbar.Collapse id="navbar-nav">
-            <Nav className="me-auto">
+            <Nav className="me-auto" variant="tabs">
               <Link to="/react-weather-2/savedcities" className="nav-link">Favourite Cities</Link>
             </Nav>
           </Navbar.Collapse>
