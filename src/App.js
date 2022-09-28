@@ -115,8 +115,11 @@ function App() {
   }
 
   function getFromLocalStorage() {
-    const citiesFromLocalStorage = localStorage.getItem("citiesInLocalStorage")
-    setSavedCities(JSON.parse(citiesFromLocalStorage))
+    const citiesFromLocalStorage = localStorage.getItem("citiesInLocalStorage");
+
+    if(citiesFromLocalStorage) {
+      setSavedCities(JSON.parse(citiesFromLocalStorage))
+    }
   }
 
   useEffect(() => {
