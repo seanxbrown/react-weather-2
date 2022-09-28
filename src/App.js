@@ -77,8 +77,9 @@ function App() {
   function addToFavouriteCities() {
 
     const newId = "" + geoInformation.lat + geoInformation.lon
+    const newSavedCities = [...savedCities]
 
-    for (let city of savedCities) {
+    for (let city of newSavedCities) {
 
       if (newId === city.id) {
         return
@@ -95,17 +96,32 @@ function App() {
       country: geoInformation.country
     }
 
-    setSavedCities([...savedCities].concat(newCity))
+    newSavedCities.push(newCity);
+    updateLocalStorage(newSavedCities)
 
   }
 
   function removeFromFavouriteCities(e) {
     const selectedId = e.target.parentElement.id
     const newArray = [...savedCities].filter(city => city.id !== selectedId)
-    setSavedCities(newArray)
+    updateLocalStorage(newArray)
 
 
   }
+
+  function updateLocalStorage(array) {
+    localStorage.setItem("citiesInLocalStorage", JSON.stringify(array))
+    getFromLocalStorage()
+  }
+
+  function getFromLocalStorage() {
+    const citiesFromLocalStorage = localStorage.getItem("citiesInLocalStorage")
+    setSavedCities(JSON.parse(citiesFromLocalStorage))
+  }
+
+  useEffect(() => {
+    getFromLocalStorage()
+  }, [])
 
   return (
     <BrowserRouter>
