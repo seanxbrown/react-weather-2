@@ -13,6 +13,7 @@ import Search from "./Search"
 import WeatherComponent from "./WeatherComponent"
 import SavedCitiesComponent from "./SavedCitiesComponent";
 import { v4 as uuidv4 } from "uuid"
+import FooterComponent from './FooterComponent';
 
 moment().format();
 
@@ -134,6 +135,7 @@ function App() {
         <Route path="/react-weather-2/" element={<Search addToFavouriteCities={addToFavouriteCities} handleSubmit={handleSubmit} weatherInformation={weatherInformation} geoInformation={geoInformation}/>}/>
           <Route path="/react-weather-2/savedcities" element={<SavedCitiesComponent removeFromFavouriteCities={removeFromFavouriteCities} callWeatherAPI={callWeatherAPI} savedCities={savedCities} />} />
         </Routes> 
+        <FooterComponent />
       </Container>
     </BrowserRouter>
     

@@ -23,7 +23,9 @@ body {
 
 #currentWeatherDiv, .weatherForecast, .savedCity {
   background-color: var(--secondary);
-  box-shadow: 5px 5px 10px
+  color: #EEEEEE;
+  box-shadow: 5px 5px 10px #555;
+
 }
 
 #submitButton, #favouritesButton {
@@ -33,6 +35,10 @@ body {
 
 #submitButton:hover, #favouritesButton:hover {
   background-color: var(--button-hover)
+}
+
+.list-group-item {
+  color: #EEEEEE;
 }
 
 .nav-link:hover {
