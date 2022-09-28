@@ -8,13 +8,13 @@ moment().format();
 function ForecastComponent({forecastData}) {
 
     return (
-        <Container id="weatherForecastDiv" className="bg-white bg-gradient mt-3">
+        <Container id="weatherForecastDiv" className="mt-3">
             <h2 className="text-center">Forecast</h2>
             <Row id="weatherForecastContainer" lg={3} md={2} xs={1}>
                 {forecastData.daily.map((day, index)  => {
                     if(index !== 0) {
                        return  <Col>
-                <Card key={index} className="weatherForecast my-1 bg-gradient bg-light text-dark">
+                <Card key={index} className="weatherForecast my-1">
                     <Card.Header className="date text-center">{moment.unix(day.dt)["_d"].toDateString()}</Card.Header>
                     <img className="mx-auto" src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`} style={{height: "128px", width:"128px"}}/>
                     <Container className="pb-3">

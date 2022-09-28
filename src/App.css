@@ -5,14 +5,18 @@
 }
 
 :root {
-  --button: #000099;
-  ---button-hover: #0000dd;
+  --background: #B8D6BF;
+  --secondary: #698A70;
+  --tertiary: #8A7E70;
+  --fourth: #B8A3D6;
+  --button: #D6BFA3;
+  --button-hover: #c6a070;
+  --background-hover: #b1d7bace;
 }
 
 body {
+  background-color: var(--background);
   font-family: 'Raleway', sans-serif;
-  background-color: #222222;
-  color: #ccc;
   line-height: 1.5rem;  
 }
 
@@ -20,9 +24,11 @@ body {
   text-align: center;
 }
 
-header {
-  margin-bottom: 1rem;
+#currentWeatherDiv, .weatherForecast, .savedCity {
+  background-color: var(--secondary);
+  box-shadow: 5px 5px 10px
 }
+
 .heading {
   padding: 1rem 0;
   background-color: #000;
@@ -37,18 +43,17 @@ header {
   border-radius: 4px;
 }
 
-#formSubmit {
-  border: 0;
-  padding: 0.7rem;
+#submitButton, #favouritesButton {
   background-color: var(--button);
-  border-radius: 4px;
-  color: #ccc
-  
+  border: 0;
 }
 
-#formSubmit:hover {
-  cursor: pointer;
-  background-color: var(---button-hover);
+#submitButton:hover, #favouritesButton:hover {
+  background-color: var(--button-hover)
+}
+
+.nav-link:hover {
+  background-color: var(--background-hover)
 }
 
 .hidden {

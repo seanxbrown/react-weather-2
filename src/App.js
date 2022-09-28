@@ -1,4 +1,4 @@
-//import './App.css';
+import './App.css';
 import {useState, useEffect} from "react";
 import moment from 'moment';
 import ForecastComponent from "./ForecastComponent"

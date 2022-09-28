@@ -9,7 +9,7 @@ function Search({ handleSubmit, weatherInformation, geoInformation, addToFavouri
           <Form.Group action="#" method="GET" className="mb-4">
             <Form.Control className="p-3" type="text" placeholder="Enter name of city" name="cityName" id="cityInput"></Form.Control>
           </Form.Group>
-          <Button type="submit" className="btn btn-large bg-success border-success mb-5 mx-auto">Submit</Button>
+          <Button type="submit" id="submitButton" className="btn btn-large mb-5 mx-auto">Submit</Button>
         </Form>
         <WeatherComponent weatherInformation={weatherInformation} geoInformation={geoInformation} addToFavouriteCities={addToFavouriteCities}/>       
         </>

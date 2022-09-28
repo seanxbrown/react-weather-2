@@ -38,7 +38,7 @@ function SavedCitiesComponent({ savedCities, callWeatherAPI, removeFromFavourite
             {savedCities.length === 0 ? <section> No cities saved!</section> :
             <Row xs={1} id="citiesContainerRow">
                 {savedCities.map(city => {
-                    return <Col id={city.id} className="border border-1 border-info mb-5 rounded-3 p-3 text-light bg-gradient bg-info">
+                    return <Col id={city.id} className="mb-5 p-3 savedCity">
                                 <CloseButton onClick={removeFromFavouriteCities}/>
                                 <Container className="d-flex justify-content-between align-items-center">
                                     <h3>{Math.round(city.temp)}°C</h3>
