@@ -14,7 +14,7 @@ function ForecastComponent({forecastData}) {
                 {forecastData.daily.map((day, index)  => {
                     if(index !== 0) {
                        return  <Col>
-                <Card key={index} className="weatherForecast my-1">
+                <Card key={index} className="weatherForecast my-3">
                     <Card.Header className="date text-center">{moment.unix(day.dt)["_d"].toDateString()}</Card.Header>
                     <img className="mx-auto" src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`} style={{height: "128px", width:"128px"}}/>
                     <Container className="pb-3">
