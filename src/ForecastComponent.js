@@ -12,7 +12,8 @@ function ForecastComponent({forecastData}) {
             <h2 className="text-center">Forecast</h2>
             <Row id="weatherForecastContainer" lg={3} md={2} xs={1}>
                 {forecastData.daily.map((day, index)  => {
-                return  <Col>
+                    if(index !== 0) {
+                       return  <Col>
                 <Card key={index} className="weatherForecast my-1 bg-gradient bg-light text-dark">
                     <Card.Header className="date text-center">{moment.unix(day.dt)["_d"].toDateString()}</Card.Header>
                     <img className="mx-auto" src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`} style={{height: "128px", width:"128px"}}/>
@@ -24,7 +25,10 @@ function ForecastComponent({forecastData}) {
                             <Card.Text>Sunset: {moment.unix(day.sunset)["_d"].toTimeString()}</Card.Text>
                         </Container>
                     </Card> 
-                </Col>             
+                </Col>   
+
+                    }
+                            
                 })}
             </Row>           
         </Container>
