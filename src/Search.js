@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container"
 function Search({ handleSubmit, weatherInformation, geoInformation, addToFavouriteCities }) {
     return (
         <>
-        <Container className="w-50 mx-auto">
+        <Container className="px-5 mx-auto">
         <Form className="mx-auto pb-2" onSubmit={handleSubmit}>
           <Form.Group action="#" method="GET" className="mb-4">
             <Form.Control className="p-3" type="text" placeholder="Enter name of city" name="cityName" id="cityInput"></Form.Control>
