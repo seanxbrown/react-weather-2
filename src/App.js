@@ -20,7 +20,7 @@ moment().format();
 function App() {
 
   const [{weatherInformation, geoInformation}, setWeatherInformation] = useState({});
-  const [savedCities, setSavedCities] = useState([])
+  const [savedCities, setSavedCities] = useState([]);
 
    async function handleSubmit(event) {
     //Submit handler function that takes the location data and uses it to call the api  
@@ -42,7 +42,7 @@ function App() {
     }
     catch(err) {
       alert(err);
-    }    
+    }   
   }  
  
   //This function is used to get the latitude and longitude for the location entered by the user. The latitude and longitude are required to use the daily forecast API
@@ -64,6 +64,7 @@ function App() {
   }
 
   async function callWeatherAPI(lat, lon) {
+
     try {
         let response =  await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=e7d76388b5f60a3e534c45325d4d2be9`);
         let data = await response.json();
@@ -73,6 +74,7 @@ function App() {
     catch(err) {
       alert(err);
     }
+
   }
 
   function addToFavouriteCities() {
@@ -81,12 +83,9 @@ function App() {
     const newSavedCities = [...savedCities]
 
     for (let city of newSavedCities) {
-
       if (newId === city.id) {
         return
-      }
-
-      
+      }      
     }
 
     const newCity = {
@@ -132,7 +131,7 @@ function App() {
       <Container fluid className="p-0">
         <NavbarComponent />      
         <Routes>
-        <Route path="/react-weather-2/" element={<Search addToFavouriteCities={addToFavouriteCities} handleSubmit={handleSubmit} weatherInformation={weatherInformation} geoInformation={geoInformation}/>}/>
+          <Route path="/react-weather-2/" element={<Search addToFavouriteCities={addToFavouriteCities} handleSubmit={handleSubmit} weatherInformation={weatherInformation} geoInformation={geoInformation}/>}/>
           <Route path="/react-weather-2/savedcities" element={<SavedCitiesComponent removeFromFavouriteCities={removeFromFavouriteCities} callWeatherAPI={callWeatherAPI} savedCities={savedCities} />} />
         </Routes> 
         <FooterComponent />

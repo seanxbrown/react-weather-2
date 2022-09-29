@@ -12,8 +12,6 @@ function SavedCitiesComponent({ savedCities, callWeatherAPI, removeFromFavourite
 
     const [savedCityWeather, setSavedCityWeather] = useState([]);
 
-    
-
     useEffect(() => {
         async function getWeatherForSavedCities(cityArray) {
 
@@ -24,10 +22,9 @@ function SavedCitiesComponent({ savedCities, callWeatherAPI, removeFromFavourite
                city.weather_description = response.current.weather[0].main
                city.weather_icon = response.current.weather[0].icon
                newCityArray.push(city)
-               console.log(response)
             }
     
-            setSavedCityWeather()
+            setSavedCityWeather(newCityArray)
         }
         getWeatherForSavedCities(savedCities)
     }, [savedCities, callWeatherAPI])
@@ -37,7 +34,7 @@ function SavedCitiesComponent({ savedCities, callWeatherAPI, removeFromFavourite
         <Container className="px-4">
             {savedCities.length === 0 ? <section> No cities saved!</section> :
             <Row xs={1} id="citiesContainerRow">
-                {savedCities.map(city => {
+                {savedCityWeather.map(city => {
                     return <Col id={city.id} className="mb-5 py-4 savedCity">
                                 <CloseButton onClick={removeFromFavouriteCities}/>
                                 <Container className="d-flex align-items-center">
