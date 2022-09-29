@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col"
 import moment from "moment";
 import { useState, useEffect } from "react";
 import CloseButton from "react-bootstrap/CloseButton";
-
+import Alert from "react-bootstrap/Alert";
 
 moment().format()
 
@@ -15,24 +15,26 @@ function SavedCitiesComponent({ savedCities, callWeatherAPI, removeFromFavourite
     useEffect(() => {
         async function getWeatherForSavedCities(cityArray) {
 
-            const newCityArray = []
+            const newCityArray = [];
             for (let city of cityArray) {
-               const response = await callWeatherAPI(city.lat, city.lon)
-               city.temp = response.current.temp
-               city.weather_description = response.current.weather[0].main
-               city.weather_icon = response.current.weather[0].icon
-               newCityArray.push(city)
+               const response = await callWeatherAPI(city.lat, city.lon);
+               city.temp = response.current.temp;
+               city.weather_description = response.current.weather[0].main;
+               city.weather_icon = response.current.weather[0].icon;
+               newCityArray.push(city);
             }
     
-            setSavedCityWeather(newCityArray)
+            setSavedCityWeather(newCityArray);
         }
-        getWeatherForSavedCities(savedCities)
+
+        getWeatherForSavedCities(savedCities);
+
     }, [savedCities, callWeatherAPI])
 
 
     return (
         <Container className="px-4">
-            {savedCities.length === 0 ? <section> No cities saved!</section> :
+            {savedCities.length === 0 ? <Alert variant="info" className="text-center"> No cities saved!</Alert> :
             <Row xs={1} id="citiesContainerRow">
                 {savedCityWeather.map(city => {
                     return <Col id={city.id} className="mb-5 py-4 savedCity">

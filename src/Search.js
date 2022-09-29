@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import WeatherComponent from "./WeatherComponent";
 import Container from "react-bootstrap/Container";
 
-function Search({ handleSubmit, weatherInformation, geoInformation, addToFavouriteCities, loadingStatus }) {
+function Search({ handleSubmit, weatherInformation, geoInformation, addToFavouriteCities }) {
     return (
         <>
         <Container className="px-5 mx-auto">
@@ -14,7 +14,7 @@ function Search({ handleSubmit, weatherInformation, geoInformation, addToFavouri
             <Button type="submit" id="submitButton" className="btn mb-5 mx-auto">Submit</Button>
           </Form>
         </Container>
-        
+      
         <WeatherComponent weatherInformation={weatherInformation} geoInformation={geoInformation} addToFavouriteCities={addToFavouriteCities}/> 
         </>
 

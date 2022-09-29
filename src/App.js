@@ -1,18 +1,11 @@
 import './App.css';
 import {useState, useEffect} from "react";
 import moment from 'moment';
-import ForecastComponent from "./ForecastComponent"
-import CurrentWeatherComponent from "./CurrentWeatherComponent";
-import Row from "react-bootstrap/Row";
-import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/Button";
 import NavbarComponent from "./NavbarComponent"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Search from "./Search"
-import WeatherComponent from "./WeatherComponent"
 import SavedCitiesComponent from "./SavedCitiesComponent";
-import { v4 as uuidv4 } from "uuid"
 import FooterComponent from './FooterComponent';
 
 moment().format();
@@ -45,7 +38,8 @@ function App() {
     }   
   }  
  
-  //This function is used to get the latitude and longitude for the location entered by the user. The latitude and longitude are required to use the daily forecast API
+  //This function is used to get the latitude and longitude for the location entered by the user. 
+  //The latitude and longitude are required to use the daily forecast API
   async function callGeoAPI(location) {
     try {
         const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=e7d76388b5f60a3e534c45325d4d2be9`, {mode: "cors"});
@@ -55,11 +49,11 @@ function App() {
          return
         } else {
        let data = await dataArray[0];
-       return data
+       return data;
      }      
     }
     catch(err) {
-      alert(err)
+      alert(err);
     }
   }
 
@@ -68,7 +62,7 @@ function App() {
     try {
         let response =  await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&appid=e7d76388b5f60a3e534c45325d4d2be9`);
         let data = await response.json();
-       return data;
+        return data;
       }
 
     catch(err) {
@@ -79,12 +73,12 @@ function App() {
 
   function addToFavouriteCities() {
 
-    const newId = "" + geoInformation.lat + geoInformation.lon
-    const newSavedCities = [...savedCities]
+    const newId = "" + geoInformation.lat + geoInformation.lon;
+    const newSavedCities = [...savedCities];
 
     for (let city of newSavedCities) {
       if (newId === city.id) {
-        return
+        return;
       }      
     }
 
@@ -97,33 +91,31 @@ function App() {
     }
 
     newSavedCities.push(newCity);
-    updateLocalStorage(newSavedCities)
+    updateLocalStorage(newSavedCities);
 
   }
 
   function removeFromFavouriteCities(e) {
-    const selectedId = e.target.parentElement.id
-    const newArray = [...savedCities].filter(city => city.id !== selectedId)
-    updateLocalStorage(newArray)
-
-
+    const selectedId = e.target.parentElement.id;
+    const newArray = [...savedCities].filter(city => city.id !== selectedId);
+    updateLocalStorage(newArray);
   }
 
   function updateLocalStorage(array) {
-    localStorage.setItem("citiesInLocalStorage", JSON.stringify(array))
-    getFromLocalStorage()
+    localStorage.setItem("citiesInLocalStorage", JSON.stringify(array));
+    getFromLocalStorage();
   }
 
   function getFromLocalStorage() {
     const citiesFromLocalStorage = localStorage.getItem("citiesInLocalStorage");
 
     if(citiesFromLocalStorage) {
-      setSavedCities(JSON.parse(citiesFromLocalStorage))
+      setSavedCities(JSON.parse(citiesFromLocalStorage));
     }
   }
 
   useEffect(() => {
-    getFromLocalStorage()
+    getFromLocalStorage();
   }, [])
 
   return (

@@ -27,12 +27,10 @@ function ForecastComponent({forecastData}) {
                     </Card> 
                 </Col>   
 
-                    }
-                            
+                    }     
                 })}
             </Row>           
         </Container>
-        
     )
 }
 
