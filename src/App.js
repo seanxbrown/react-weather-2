@@ -14,6 +14,8 @@ function App() {
 
   const [{weatherInformation, geoInformation}, setWeatherInformation] = useState({});
   const [savedCities, setSavedCities] = useState([]);
+  const [warningStatus, setWarningStatus] = useState({display: false, message: ""})
+  const [alertMessage, setAlertMessage] = useState({display: false, message: ""})
 
    async function handleSubmit(event) {
     //Submit handler function that takes the location data and uses it to call the api  
@@ -78,6 +80,7 @@ function App() {
 
     for (let city of newSavedCities) {
       if (newId === city.id) {
+        setWarningStatus({display: true, message:"City has already been saved."})
         return;
       }      
     }
@@ -92,6 +95,7 @@ function App() {
 
     newSavedCities.push(newCity);
     updateLocalStorage(newSavedCities);
+    setAlertMessage({display: true, message: "City saved to favourites."})
 
   }
 
@@ -114,6 +118,17 @@ function App() {
     }
   }
 
+  function closeWarning() {
+    setWarningStatus({display: false, message: ""})
+
+  }
+
+  function closeAlert() {
+    setAlertMessage({display: false, message: ""})
+
+  }
+
+
   useEffect(() => {
     getFromLocalStorage();
   }, [])
@@ -123,7 +138,7 @@ function App() {
       <Container fluid className="p-0">
         <NavbarComponent />      
         <Routes>
-          <Route path="/react-weather-2/" element={<Search addToFavouriteCities={addToFavouriteCities} handleSubmit={handleSubmit} weatherInformation={weatherInformation} geoInformation={geoInformation}/>}/>
+          <Route path="/react-weather-2/" element={<Search closeAlert={closeAlert} alertMessage={alertMessage} closeWarning={closeWarning} warningStatus={warningStatus} addToFavouriteCities={addToFavouriteCities} handleSubmit={handleSubmit} weatherInformation={weatherInformation} geoInformation={geoInformation}/>}/>
           <Route path="/react-weather-2/savedcities" element={<SavedCitiesComponent removeFromFavouriteCities={removeFromFavouriteCities} callWeatherAPI={callWeatherAPI} savedCities={savedCities} />} />
         </Routes> 
         <FooterComponent />
