@@ -96,6 +96,7 @@ function App() {
     newSavedCities.push(newCity);
     updateLocalStorage(newSavedCities);
     setAlertMessage({display: true, message: "City saved to favourites."})
+    setTimeout(closeAlert, 5000)
 
   }
 

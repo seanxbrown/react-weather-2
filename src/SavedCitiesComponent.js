@@ -1,18 +1,17 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col"
 import moment from "moment";
 import { useState, useEffect } from "react";
-import CloseButton from "react-bootstrap/CloseButton";
 import Alert from "react-bootstrap/Alert";
-import SavedCity from "./SavedCity"
+import SavedCity from "./SavedCity";
+import Spinner from "react-bootstrap/Spinner";
 
 moment().format()
 
 function SavedCitiesComponent({ savedCities, callWeatherAPI, removeFromFavouriteCities }) {
 
     const [savedCityWeather, setSavedCityWeather] = useState([]);
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         setLoading(true)
@@ -39,6 +38,7 @@ function SavedCitiesComponent({ savedCities, callWeatherAPI, removeFromFavourite
     return (
         <Container className="px-4">
             {savedCities.length === 0 ? <Alert variant="info" className="text-center"> No cities saved!</Alert> :
+            loading ? <Spinner animation="border" role="status"/> :
             <Row xs={1} id="citiesContainerRow">
                 {savedCityWeather.map(city => {
                     return <SavedCity key={city.id} city={city} removeFromFavouriteCities={removeFromFavouriteCities} />
