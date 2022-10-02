@@ -15,7 +15,7 @@ function App() {
   const [{weatherInformation, geoInformation}, setWeatherInformation] = useState({});
   const [savedCities, setSavedCities] = useState([]);
   const [warningStatus, setWarningStatus] = useState({display: false, message: ""})
-  const [alertMessage, setAlertMessage] = useState({display: false, message: ""})
+  const [alertMessage, setAlertMessage] = useState({display: false, message: ""});
 
    async function handleSubmit(event) {
     //Submit handler function that takes the location data and uses it to call the api  
